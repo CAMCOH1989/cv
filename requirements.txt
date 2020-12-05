@@ -1,0 +1,11 @@
+aiohttp~=3.6.2
+aiomisc
+alembic
+asyncpgsa
+ConfigArgParse
+jinja2
+marshmallow
+psycopg2-binary
+PyYAML
+SQLAlchemy==1.3.16
+uvloop

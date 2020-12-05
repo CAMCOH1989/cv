@@ -1,0 +1,5 @@
+include README.rst
+include requirements*.txt
+include landing/alembic.ini
+
+graft landing/server/templates
