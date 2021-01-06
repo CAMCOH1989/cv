@@ -1,15 +1,19 @@
 <template>
-  <h3> Main:</h3>
+  <div>
+    <span>KEK</span>
+  </div>
 </template>
 
 <script>
-  export default {
-    name: 'Main',
+export default {
+  name: "Main",
+  data() {
+    return {
+      noneData: undefined
+    }
   }
+}
 </script>
 
 <style>
-  h3 {
-    margin-bottom: 5%;
-  }
 </style>

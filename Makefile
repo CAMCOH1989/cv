@@ -19,17 +19,18 @@ devenv: clean
 	env/bin/pip install --upgrade pip
 	env/bin/pip install -Ue '.[dev]'
 	env/bin/pip install -r requirements.dev.txt -Ue
-z cv
 
 clean:
 	rm -fr *.egg-info dist
 	find . -iname '*.pyc' -delete
 
 lint:
-	pylama app_sharer
+	env/bin/pylama cv/server
+	env/bin/pylama cv/utils
+	env/bin/pylama cv/models.py
 
 imports:
-	isort -ca app_sharer/*/**.py
+	isort -ca cv/*/**.py
 
 sdist: clean
 	python3 setup.py sdist

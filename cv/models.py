@@ -24,7 +24,16 @@ guests_table = Table(
     Column("id", Integer, primary_key=True),
     Column("ip", String),
     Column("user_agent", String),
-    Column("visit_datetime", String)
+    Column("visit_datetime", String),
+    Column("os", String),
+)
+
+skills_table = Table(
+    "skills",
+    metadata,
+    Column("id", Integer, primary_key=True),
+    Column("skill_name", String),
+    Column("skill_weight", Integer),
 )
 
 

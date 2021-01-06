@@ -19,3 +19,8 @@ class BaseView(View):
     @property
     def pg(self) -> PG:
         return self.request.app['pg']
+
+    @property
+    async def locale(self) -> str:
+        locale = dict(self.request.rel_url.query).get("locale", "ru")
+        return locale

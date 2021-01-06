@@ -5,7 +5,8 @@ from aiohttp.web import Application
 from configargparse import Namespace
 
 from cv.utils.pg import setup_app_pg
-from cv.server.handlers.index import IndexView
+from cv.server.handlers.skills_handler import SkillsView
+from cv.server.handlers.cv_handler import CVView
 from cv.utils.config import config
 
 
@@ -19,6 +20,7 @@ def create_app() -> Application:
 
     app.cleanup_ctx.append(partial(setup_app_pg, args=config))
 
-    app.router.add_route('GET', '/api', IndexView)
+    app.router.add_route('GET', '/api/skills', SkillsView)
+    app.router.add_route('GET', '/api/cv', CVView)
 
     return app
