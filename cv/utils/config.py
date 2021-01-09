@@ -32,7 +32,7 @@ class Config:
     WEB_SECURE_COOKIES = conf.get("WEB_SECURE_COOKIES", False)
 
     # Database config
-    DEFAULT_PG_URL = conf.get("PDB_URL", "postgresql://api:hackme@127.0.0.1:5488/app_sharer")
+    DEFAULT_PG_URL = conf.get("PDB_URL", "postgresql://api:hackme@127.0.0.1:5490/cv_table")
     PG_POOL_MIN_SIZE = conf.get("PG_POOL_MIN_SIZE", 10)
     PG_POOL_MAX_SIZE = conf.get("PG_POOL_MAX_SIZE", 10)
 

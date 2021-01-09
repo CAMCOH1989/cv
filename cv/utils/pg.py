@@ -13,7 +13,7 @@ from cv.utils.config import Config as cfg
 
 
 CENSORED = '***'
-DEFAULT_PG_URL = 'postgresql://api:hackme@localhost:5432/cv_db'
+DEFAULT_PG_URL = cfg.DEFAULT_PG_URL
 PROJECT_PATH = Path(__file__).parent.parent
 
 log = logging.getLogger(__name__)

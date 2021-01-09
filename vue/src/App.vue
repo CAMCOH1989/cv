@@ -1,13 +1,20 @@
 <template>
   <div class="main_section">
     <header>
-      <div style="display: flex">
-        <a href="#Main" v-on:click="ShowMain()" class="header_button">Main page</a>
-        <a href="#Skills" v-on:click="ShowSkills()" class="header_button">Skills</a>
-        <a href="#CV" v-on:click="ShowCV()" class="header_button">CV</a>
+      <div v-if="$store.state.pageLocale === 'en'" style="display: flex">
+        <a href="#Main" v-on:click="ShowPage('main')" class="header_button">Main page</a>
+        <a href="#Skills" v-on:click="ShowPage('skills')" class="header_button">Skills</a>
+        <a href="#CV" v-on:click="ShowPage('cv')" class="header_button">CV</a>
+        <a href="#Statistics" v-on:click="ShowPage('stats')" class="header_button">Statistics</a>
+      </div>
+      <div v-else style="display: flex">
+        <a href="#Main" v-on:click="ShowPage('main')" class="header_button">Главная</a>
+        <a href="#Skills" v-on:click="ShowPage('skills')" class="header_button">навыки</a>
+        <a href="#CV" v-on:click="ShowPage('cv')" class="header_button">Резюме</a>
+        <a href="#Statistics" v-on:click="ShowPage('stats')" class="header_button">Статистика</a>
       </div>
       <fieldset class="lang_selector">
-        <input v-on:change="SetLocale('ru')" :checked="$store.state.pageLocale === 'ru'"
+        <input v-on:change="SetLocale('ru')" :checked="$store.state.pageLocale === 'ru' || $store.state.pageLocale == undefined"
                type="radio" name="lang" id="ru">
         <label for="ru">RU</label>
         <input v-on:change="SetLocale('en')" :checked="$store.state.pageLocale === 'en'"
@@ -24,6 +31,9 @@
     <div v-else-if="this.pageToShow === 'cv'" class="section_div">
       <CV/>
     </div>
+    <div v-else-if="this.pageToShow === 'stats'" class="section_div">
+      <Statistics/>
+    </div>
     <Footer/>
   </div>
 </template>
@@ -36,6 +46,7 @@ import Main from '@/components/Main.vue';
 import Footer from '@/components/Footer.vue';
 import SkillTags from '@/components/SkillTags.vue';
 import CV from '@/components/CV.vue'
+import Statistics from '@/components/Statistics.vue'
 import axios from "axios";
 
 Vue.use(VueCookies);
@@ -45,21 +56,26 @@ const store = new Vuex.Store({
   state: {
     pageLocale: "ru",
     cv: {
-        surName: undefined,
-        firstName: undefined,
-        middleName: undefined,
-        birthDate: undefined,
-        age: undefined,
-        phone: undefined,
-        experience: undefined,
-        email: undefined,
-        telegram: undefined,
-        skype: undefined,
-        personalData: undefined,
-        education: undefined,
-        languages: undefined,
-        sex: undefined,
-      }
+      surName: undefined,
+      firstName: undefined,
+      middleName: undefined,
+      birthDate: undefined,
+      age: undefined,
+      phone: undefined,
+      experience: undefined,
+      email: undefined,
+      telegram: undefined,
+      skype: undefined,
+      personalData: undefined,
+      education: undefined,
+      languages: undefined,
+      sex: undefined,
+    },
+    statistics_raw: undefined,
+    statistics: {
+      pages: undefined,
+      systems: undefined
+    }
   },
   actions: {
     fillCVData() {
@@ -71,6 +87,22 @@ const store = new Vuex.Store({
         if (response.status === 200) {
           console.log(response.data)
           this.state.cv = response.data.cv;
+        } else {
+          console.log(response);
+        }
+      }).catch(error => {
+        console.log(error);
+      })
+    },
+    getStatistics() {
+      axios({
+        method: "get",
+        url: "/api/statistics",
+        params: {"locale": this.state.pageLocale},
+      }).then(response => {
+        if (response.status === 200) {
+          console.log(response.data)
+          this.state.statistics_raw = response.data.statistics;
         } else {
           console.log(response);
         }
@@ -94,16 +126,23 @@ export default {
     Footer,
     SkillTags,
     CV,
+    Statistics,
   },
   methods: {
-    ShowMain() {
-      this.pageToShow = "main"
-    },
-    ShowSkills() {
-      this.pageToShow = "skills"
-    },
-    ShowCV() {
-      this.pageToShow = "cv"
+    ShowPage(new_page) {
+      this.pageToShow = new_page
+      const location = {"location": new_page}
+      axios({
+        method: "post",
+        url: "/api/statistics",
+        data: location
+      }).then(response => {
+        if (response.status !== 200) {
+          console.log(response);
+        }
+      }).catch(error => {
+        console.log(error);
+      })
     },
     SetLocale(new_locale) {
       this.$store.state.pageLocale = new_locale;
@@ -116,6 +155,8 @@ export default {
       this.pageToShow = "cv";
     } else if (window.location.hash === "#Main") {
       this.pageToShow = "main";
+    } else if (window.location.hash === "#Statistics") {
+      this.pageToShow = "stats";
     } else if (window.location.hash === "#Skills") {
       this.pageToShow = "skills";
     } else {
@@ -148,6 +189,7 @@ header {
   flex-direction: row;
   justify-content: space-between;
   top: 0;
+  z-index: 100;
 }
 
 .header_button {
@@ -164,7 +206,7 @@ header {
   padding: 70px 0 90px;
   background: #965509;
   color: #201f1f;
-  height: 100vh;
+  min-height: 80%;
 }
 
 h3 {
@@ -172,7 +214,7 @@ h3 {
 }
 
 .section_div {
-  height: 100%;
+  /*height: 100%;*/
 }
 
 .lang_selector {

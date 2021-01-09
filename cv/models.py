@@ -18,13 +18,14 @@ convention = {
 
 metadata = MetaData(naming_convention=convention)
 
-guests_table = Table(
-    "guests",
+visits_table = Table(
+    "visits",
     metadata,
     Column("id", Integer, primary_key=True),
     Column("ip", String),
     Column("user_agent", String),
-    Column("visit_datetime", String),
+    Column("visit_datetime", DateTime),
+    Column("location", String),
     Column("os", String),
 )
 
@@ -38,4 +39,4 @@ skills_table = Table(
 
 
 class Tables:
-    guests = guests_table
+    guests = visits_table

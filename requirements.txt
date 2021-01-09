@@ -8,4 +8,5 @@ marshmallow
 psycopg2-binary
 PyYAML
 SQLAlchemy==1.3.16
+user-agents
 uvloop

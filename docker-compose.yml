@@ -5,8 +5,8 @@ services:
     restart: always
     image: postgres:latest
     ports:
-      - 5482:5432
+      - 5490:5432
     environment:
       POSTGRES_USER: api
       POSTGRES_PASSWORD: hackme
-      POSTGRES_DB: landos
+      POSTGRES_DB: cv_table
