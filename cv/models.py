@@ -27,6 +27,7 @@ visits_table = Table(
     Column("visit_datetime", DateTime),
     Column("location", String),
     Column("os", String),
+    Column("cookie_id", String),
 )
 
 skills_table = Table(

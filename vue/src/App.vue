@@ -45,8 +45,8 @@ import Vuex from 'vuex';
 import Main from '@/components/Main.vue';
 import Footer from '@/components/Footer.vue';
 import SkillTags from '@/components/SkillTags.vue';
-import CV from '@/components/CV.vue'
-import Statistics from '@/components/Statistics.vue'
+import CV from '@/components/CV.vue';
+import Statistics from '@/components/Statistics.vue';
 import axios from "axios";
 
 Vue.use(VueCookies);
@@ -73,7 +73,7 @@ const store = new Vuex.Store({
     },
     statistics_raw: undefined,
     statistics: {
-      pages: undefined,
+      locations: undefined,
       systems: undefined
     }
   },
@@ -102,7 +102,7 @@ const store = new Vuex.Store({
       }).then(response => {
         if (response.status === 200) {
           console.log(response.data)
-          this.state.statistics_raw = response.data.statistics;
+          this.state.statistics = response.data.statistics;
         } else {
           console.log(response);
         }
@@ -219,5 +219,11 @@ h3 {
 
 .lang_selector {
   margin-right: 40px;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+
 }
 </style>

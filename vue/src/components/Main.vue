@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="centered">
     <span>KEK</span>
   </div>
 </template>

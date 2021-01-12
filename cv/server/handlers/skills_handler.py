@@ -6,7 +6,17 @@ from cv.server.handlers.base import BaseView
 
 class SkillsView(BaseView):
     async def get(self):
-        test_skills = [["Python", 9], ["Vue", 1]]
+        test_skills = [
+            ["Python", 91],
+            ["PostgreSQL", 81],
+            ["Mongo", 71],
+            ["Linux", 61],
+            ["Python", 51],
+            ["IN", 41],
+            ["sadas", 31],
+            ["zxcxzc", 21],
+            ["xczxc", 11],
+            ["Vue", 1]]
         render_data = {"skills": test_skills}
         print(await self.pg.fetchrow(select()))
         return json_response(render_data)

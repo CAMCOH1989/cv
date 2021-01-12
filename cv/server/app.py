@@ -25,5 +25,6 @@ def create_app() -> Application:
     app.router.add_route('GET', '/api/skills', SkillsView)
     app.router.add_route('GET', '/api/cv', CVView)
     app.router.add_route('*', '/api/statistics', StatisticsView)
+    app.router.add_route('POST', '/admin/skills', SkillsView)
 
     return app

@@ -36,5 +36,8 @@ class Config:
     PG_POOL_MIN_SIZE = conf.get("PG_POOL_MIN_SIZE", 10)
     PG_POOL_MAX_SIZE = conf.get("PG_POOL_MAX_SIZE", 10)
 
+    # Admin config
+    ADMIN_TOKEN = conf["ADMIN_TOKEN"]
+
 
 config = Config()

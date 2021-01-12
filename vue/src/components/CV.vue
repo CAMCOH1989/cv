@@ -87,9 +87,4 @@ export default {
 </script>
 
 <style scoped>
-.centered {
-  display: flex;
-  justify-content: center;
-
-}
 </style>

@@ -1,12 +1,21 @@
 <template>
-  <div>
+  <div class="centered">
     <vue-word-cloud
         style="
           height: 480px;
           width: 640px;
         "
         :words="this.skills"
-        :color="([, weight]) => weight > 10 ? 'DeepPink' : weight > 5 ? 'RoyalBlue' : 'Indigo'"
+        :color="([, weight]) =>
+        weight > 90 ? 'DeepPink' :
+        weight > 80 ? 'Red' :
+        weight > 70 ? 'Grey' :
+        weight > 60 ? 'Yellow' :
+        weight > 50 ? 'White' :
+        weight > 40 ? 'Aqua' :
+        weight > 30 ? 'DeepPink' :
+        weight > 20 ? 'DeepPink' :
+        weight > 10 ? 'RoyalBlue' : 'Indigo'"
         font-family="Roboto"
     />
   </div>
@@ -53,4 +62,7 @@ export default {
 </script>
 
 <style>
+body {
+  color: ;
+}
 </style>
