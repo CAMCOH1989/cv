@@ -1,17 +1,17 @@
 <template>
-<div>
-  <div class="centered">
+<div class="scroll">
+  <div class="centered" style="flex-direction: column">
     <h1>{{ $store.state.cv.surName }} {{ $store.state.cv.firstName }} {{
         $store.state.cv.middleName
       }}</h1>
+    <p>{{ $store.state.cv.sex }} {{ $store.state.cv.age }} ({{ $store.state.cv.birthDate }})
+    </p>
   </div>
-  <div class="centered">
-    <div style="width: 350px">
+  <div class="centered" style="margin-top: 50px">
+    <div class="cv_column">
       <img width="300" height="600" style="left: 300px" src="/images/test.jpg">
     </div>
-    <div>
-      <span>{{ $store.state.cv.sex }} {{ $store.state.cv.age }} ({{ $store.state.cv.birthDate }})
-      </span>
+    <div class="cv_column">
       <h2 v-if="this.$store.state.pageLocale === 'ru'">Контакты</h2>
       <h2 v-else-if="this.$store.state.pageLocale === 'en'">Contacts</h2>
       <table>
@@ -37,7 +37,7 @@
       <h2 v-if="this.$store.state.pageLocale === 'ru'">Опыт</h2>
       <h2 v-else-if="this.$store.state.pageLocale === 'en'">Experience</h2>
       <div v-for="exp in this.$store.state.cv.experience">
-        <span>{{ exp }}</span>
+        <p>{{ exp }}</p>
       </div>
       <h2 v-if="this.$store.state.pageLocale === 'ru'">Знание языков</h2>
       <h2 v-else-if="this.$store.state.pageLocale === 'en'">Languages</h2>
@@ -87,4 +87,15 @@ export default {
 </script>
 
 <style scoped>
+.cv_column {
+  width: 350px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.cv_column p, table {
+  text-align: left;
+}
 </style>

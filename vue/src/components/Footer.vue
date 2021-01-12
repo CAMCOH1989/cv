@@ -1,25 +1,30 @@
 <template>
   <footer class="centered_row">
-    <div v-if="$store.state.pageLocale === 'en'" class="small_row">
-      <a>Github</a>
-      <a>Telegram</a>
-      <a>Email</a>
-      <a>Phone</a>
-      <a>Skype</a>
-    </div>
-    <div v-else class="column">
-      <a>Github</a>
-      <a>Telegram</a>
-      <a>Email</a>
-      <a>Телефон</a>
-      <a>Skype</a>
+    <div class="column">
+      <div class="small_row" style="padding-top: 30px">
+        <a href="https://github.com/CAMCOH1989">Github</a>
+        <a href="https://t.me/joinchat/@CAMCOH1989">Telegram</a>
+        <a href="mailto:camcoh1989@gmail.com">Email</a>
+        <a href="tel:+79032997420">+7 (903) 299-74-20</a>
+        <a href="#">Skype</a>
+      </div>
+      <div class="small_row">
+        <a href="#">LinkedIn</a>
+        <a href="#">HH.ru</a>
+        <a href="#">VK</a>
+        <a href="#">Facebook</a>
+      </div>
     </div>
   </footer>
 </template>
 
 <script>
+
 export default {
-  name: "Footer"
+  name: "Footer",
+  // icons: {
+  //   iconfont: 'mdiSvg'
+  // }
 }
 </script>
 
@@ -45,8 +50,23 @@ a {
 .small_row {
   display: flex;
   justify-content: space-around;
-  padding-top: 30px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: 1000px;
 }
+
+.ico {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+ a {
+   display: flex;
+   align-items: center;
+   text-decoration: none;
+ }
 </style>

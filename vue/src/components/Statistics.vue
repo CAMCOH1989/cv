@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="centered">
     <div v-for="page in  $store.state.statistics.locations">
       <p>{{page}}</p>
     </div>

@@ -33,7 +33,7 @@ class CVView(BaseView):
                     "11 лет инженер на телевидении",
                     "с мая 2018 бекэнд разраотчик в KamaGames Studio"
                 ],
-                "personalData": "",
+                "personalData": "aaaaa\naaaa\naaaaa\naaaa\naaaaa\naaaa\naaaaa\naaaa\naaaaa\naaaa\naaaaa\naaaa\naaaaa\naaaa\naaaaa\naaaa\naaaaa\naaaa\naaaaa\naaaa\naaaaa\naaaa\naaaaa\naaaa\naaaaa\naaaa\naaaaa\naaaa\naaaaa\naaaa\naaaaa\naaaa\naaaaa\naaaa\naaaaa\naaaa\naaaaa\naaaa\naaaaa\naaaa\n",
                 "education": "",
                 "languages": [
                     {

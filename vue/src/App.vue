@@ -9,12 +9,13 @@
       </div>
       <div v-else style="display: flex">
         <a href="#Main" v-on:click="ShowPage('main')" class="header_button">Главная</a>
-        <a href="#Skills" v-on:click="ShowPage('skills')" class="header_button">навыки</a>
+        <a href="#Skills" v-on:click="ShowPage('skills')" class="header_button">Навыки</a>
         <a href="#CV" v-on:click="ShowPage('cv')" class="header_button">Резюме</a>
         <a href="#Statistics" v-on:click="ShowPage('stats')" class="header_button">Статистика</a>
       </div>
       <fieldset class="lang_selector">
-        <input v-on:change="SetLocale('ru')" :checked="$store.state.pageLocale === 'ru' || $store.state.pageLocale == undefined"
+        <input v-on:change="SetLocale('ru')"
+               :checked="$store.state.pageLocale === 'ru' || $store.state.pageLocale == undefined"
                type="radio" name="lang" id="ru">
         <label for="ru">RU</label>
         <input v-on:change="SetLocale('en')" :checked="$store.state.pageLocale === 'en'"
@@ -22,18 +23,18 @@
         <label for="en">EN</label>
       </fieldset>
     </header>
-    <div v-if="this.pageToShow === 'main'" class="section_div">
+    <section v-if="this.pageToShow === 'main'" class="section_div">
       <Main/>
-    </div>
-    <div v-else-if="this.pageToShow === 'skills'" class="section_div">
+    </section>
+    <section v-else-if="this.pageToShow === 'skills'" class="section_div">
       <SkillTags/>
-    </div>
-    <div v-else-if="this.pageToShow === 'cv'" class="section_div">
+    </section>
+    <section v-else-if="this.pageToShow === 'cv'" class="section_div">
       <CV/>
-    </div>
-    <div v-else-if="this.pageToShow === 'stats'" class="section_div">
+    </section>
+    <section v-else-if="this.pageToShow === 'stats'" class="section_div">
       <Statistics/>
-    </div>
+    </section>
     <Footer/>
   </div>
 </template>
@@ -48,7 +49,9 @@ import SkillTags from '@/components/SkillTags.vue';
 import CV from '@/components/CV.vue';
 import Statistics from '@/components/Statistics.vue';
 import axios from "axios";
+import Vuetify from 'vuetify/lib'
 
+Vue.use(Vuetify)
 Vue.use(VueCookies);
 Vue.use(Vuex);
 
@@ -182,7 +185,7 @@ body {
 header {
   position: fixed;
   width: 100%;
-  height: 50px;
+  height: 70px;
   background: #2f2f2f;
   padding: 10px 10px;
   display: flex;
@@ -194,36 +197,46 @@ header {
 
 .header_button {
   min-width: 20px;
-  height: 20px;
+  height: 50px;
   max-width: 100px;
   padding: 15px 10px;
   margin: 0 10px;
   background: #201f1f;
   color: aliceblue;
+  text-decoration: none;
 }
 
 .main_section {
-  padding: 70px 0 90px;
+  padding: 100px 0 130px;
   background: #965509;
   color: #201f1f;
-  min-height: 80%;
+  min-height: 100%;
 }
 
 h3 {
   height: 100px;
 }
 
-.section_div {
-  /*height: 100%;*/
+section {
 }
 
 .lang_selector {
   margin-right: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100px;
+  color: aliceblue;
 }
 
 .centered {
   display: flex;
   justify-content: center;
+}
 
+.scroll {
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: center;
 }
 </style>
