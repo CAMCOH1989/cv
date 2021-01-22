@@ -25,9 +25,10 @@ class Config:
     # Server config
     BASE_URL = conf.get("BASE_URL", "http://cv.local")
     HTTP_PORT = conf.get("HTTP_PORT", 8099)
+    HTTP_ADDRESS = conf.get("HTTP_ADDRESS", "0.0.0.0")
     STATIC_PATH = conf.get("STATIC_PATH", Path(__file__).parent.parent / "templates/static")
     TEMPLATES_PATH = conf.get("STATIC_PATH", Path(__file__).parent.parent / "templates")
-    LOG_LEVEL = conf.get("LOG_LEVEL", "info")
+    LOG_LEVEL = conf.get("LOG_LEVEL", "error")
     LOG_FORMAT = conf.get("LOG_FORMAT", "color")
     WEB_SECURE_COOKIES = conf.get("WEB_SECURE_COOKIES", False)
 

@@ -9,6 +9,7 @@ from yarl import URL
 from cv.utils.pg import DEFAULT_PG_URL
 
 
+# TODO Deprecated.
 def read_args_from_env() -> ArgumentParser:
     parser = ArgumentParser(
         auto_env_var_prefix='LANDING_',
@@ -31,7 +32,7 @@ def read_args_from_env() -> ArgumentParser:
     group.add_argument('--pg-pool-max-size', type=int, default=10)
 
     group = parser.add_argument_group('Logging options')
-    group.add_argument('--log-level', default='info',
+    group.add_argument('--log-level', default='warning',
                        choices=('debug', 'info', 'warning', 'error', 'fatal'))
     group.add_argument('--log-format', choices=LogFormat.choices(),
                        default='color')
