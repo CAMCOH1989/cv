@@ -43,6 +43,7 @@
 import Vue from "vue";
 import VueCookies from "vue-cookies";
 import Vuex from 'vuex';
+import VueMeta from 'vue-meta';
 import Main from '@/components/Main.vue';
 import Footer from '@/components/Footer.vue';
 import SkillTags from '@/components/SkillTags.vue';
@@ -54,6 +55,7 @@ import Vuetify from 'vuetify/lib'
 Vue.use(Vuetify)
 Vue.use(VueCookies);
 Vue.use(Vuex);
+Vue.use(VueMeta);
 
 const store = new Vuex.Store({
   state: {
@@ -148,6 +150,15 @@ export default {
       })
     },
     SetLocale(new_locale) {
+      if (new_locale === "en") {
+        document.title = "Vasily Zakharchuk"
+      }
+      else if (new_locale === "ru") {
+        document.title = "Василий Захарчук"
+      }
+      else {
+        document.title = "Василий Захарчук"
+      }
       this.$store.state.pageLocale = new_locale;
       localStorage.setItem("locale", new_locale);
       this.$store.dispatch("fillCVData");
@@ -165,7 +176,10 @@ export default {
     } else {
       this.pageToShow = "main";
     }
-    this.$store.state.pageLocale = localStorage.getItem("locale")
+    let new_locale = localStorage.getItem("locale");
+    this.$store.state.pageLocale = new_locale;
+
+    this.methods.SetLocale(new_locale);
   }
 }
 </script>

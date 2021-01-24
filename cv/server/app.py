@@ -19,6 +19,7 @@ def create_app() -> Application:
         client_max_size=20 * 1024 * 1024,
         middlewares=[check_cookies]
     )
+    app["config"] = config
 
     app.cleanup_ctx.append(partial(setup_app_pg, args=config))
 
